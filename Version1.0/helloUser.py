@@ -72,32 +72,29 @@ def main_script(command: str) -> None:
         case ["neofetch"]:
             os.system("neofetch")
 
-
         case ["inf" | "information" | "-if"]:
             information()
 
+        case ["ls" | "ll"| "l"]:
+            os.system("ls")
+            
         case _:
-            if platform != "win32" or "darwin" or "linux" or "linux2":
-                print("No operating system name detected, defaulting to generic error message")
-                os.system(command)
-            else: 
-                command_list = ["version","help","hash","neofetch","information"]
-                for command_ in command_list:
-                    if command_ != command: 
-                        if platform == "linux" or platform == "linux2":
-                            print("Linux operating system detected:")
-                            print("Try installing the command via 'apt', 'pacman' or 'dnf' depending on your distrobution")
-                            break
-                        elif platform == "darwin":
-                            print("OS X detected:")
-                            print("Try installing the command with brew")
-                            break
-                        elif platform == "win32":
-                            print("Windows / linux detected:")
-                            print("Try installing the command via 'apt' or 'pacman' depending on package manager")
-                            break
-
-
+            os.system(command)
+            command_list = ["version","help","hash","neofetch","information"]
+            for command_ in command_list:
+                if command_ != command: 
+                    if platform == "linux" or platform == "linux2":
+                        print("Linux operating system detected:")
+                        print("Try installing the command via 'apt', 'pacman' or 'dnf' depending on your distrobution")
+                        break
+                    elif platform == "darwin":
+                        print("OS X detected:")
+                        print("Try installing the command with brew")
+                        break
+                    elif platform == "win32":
+                        print("Windows / linux detected:")
+                        print("Try installing the command via 'apt' or 'pacman' depending on package manager")
+                        break
 
 def main():
     while 1:
