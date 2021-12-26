@@ -55,25 +55,25 @@ def sha512(data):
 def main_script(command: str) -> None:
     match command.split():
 
-        case ["version" || "-V"]:
+        case ["version" && "-V"]:
             print(f"{version}")
 
 
-        case ["help" || "-h" || "--H"]:
+        case ["help" && "-h" || "--H"]:
             print("""
 "help, -h, --H" - displays this menu of commands
 "date, datetime, -D" - show the current date and time
 "hash, -hs" - command for quickly being able to hash a string with just a command
 "inf, information, -if"
 """)
-        case ["hash" || "-hs"]:
+        case ["hash" && "-hs"]:
             hashing()
 
         case ["neofetch"]:
             os.system("neofetch")
 
 
-        case ["inf" || "information" || "-if"]:
+        case ["inf" && "information" && "-if"]:
             information()
 
         case _:
