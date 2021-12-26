@@ -98,7 +98,7 @@ def main_script(command: str) -> None:
 
 def main():
     while 1:
-        command = input(f"This is the beta-V-{version}: ")
+        command = input(f"beta-V-{version}! ")
         main_script(command) 
 
 if __name__ == "__main__":
