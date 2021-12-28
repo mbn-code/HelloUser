@@ -1,3 +1,4 @@
+import pathlib
 import platform
 import os
 #import random
@@ -85,7 +86,37 @@ def main_script(command: str) -> None:
             if "lock" in rest:
                 script_lock()
             elif "camera" in rest:
-                os.system("cheese")
+                # try to read the file if it's existing
+                # If it's not, write a 0 to the file, to let the program know that cheese is not installed
+                # Then if the file exists read the file and check if the file line is a 1 or 0
+                # If 1, start cheese via terminal, if 0 try automatically installing cheese.
+                
+
+                path = "~bin/cheese"
+                if os.path.isfile(path) == False:
+                    with open("check_cheese.txt", "w") as write_1:
+                        write_1.write("1")
+
+                    print("Checking if cheese is installed to the system")
+
+                    packman_ask = input("Are you running dnf, apt or pacman?: ")
+                    if packman_ask.lower() == "apt":
+                        os.system("sudo apt install cheese")
+
+                    if packman_ask.lower() == "pacman":
+                        os.system("sudo pacman -S cheese")
+
+                    if packman_ask.lower() == "dnf":
+                        ask_fandora_version = input("Are you running Fadora '22' or later, or '21' and older?")
+                        if ask_fandora_version.lower() == "22":
+                            os.system("sudo dnf install cheese")
+
+                        elif ask_fandora_version.lower() == "21":
+                            os.system("sudo yum install cheese")
+                elif os.path.isfile(path):
+                    os.system("cheese")
+
+
             elif "-l" in rest:
                 print("""
 -l
