@@ -84,6 +84,8 @@ def main_script(command: str) -> None:
         case ["activate", *rest]:
             if "lock" in rest:
                 script_lock()
+            elif "camera" in rest:
+                os.system("cheese")
             elif "-l" in rest:
                 print("""
 -l
