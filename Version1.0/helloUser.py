@@ -28,32 +28,46 @@ def hashing():
     print("hashing types:")
     print("md5\nsha1\nsha256\nsha512")
 
-
     which_hash_type = input("Which hash type do you want to hash your string in?: ")
 
     hashinput = input("plain text: ")
 
-def md5_hash(data):
-    hash_object = hashlib.md5()
-    hash_object.update(str(data).encode())
-    print("hash ", hash_object.hexdigest())
+    def md5_hash(data):
+        hash_object = hashlib.md5()
+        hash_object.update(str(data).encode())
+        print("hash ", hash_object.hexdigest())
 
 
-def sha1_hash(data):
-    hash_object = hashlib.sha1()
-    hash_object.update(str(data).encode())
-    print("hash ", hash_object.hexdigest())
+    def sha1_hash(data):
+        hash_object = hashlib.sha1()
+        hash_object.update(str(data).encode())
+        print("hash ", hash_object.hexdigest())
 
-def sha256(data):
-    hash_object = hashlib.sha256()
-    hash_object.update(str(data).encode())
-    print("hash ", hash_object.hexdigest())
+    def sha256(data):
+        hash_object = hashlib.sha256()
+        hash_object.update(str(data).encode())
+        print("hash ", hash_object.hexdigest())
 
 
-def sha512(data):
-    hash_object = hashlib.sha512()
-    hash_object.update(str(data).encode())
-    print("hash ", hash_object.hexdigest())        
+    def sha512(data):
+        hash_object = hashlib.sha512()
+        hash_object.update(str(data).encode())
+        print("hash ", hash_object.hexdigest())        
+
+    def choose():
+        if hashinput == None:
+            print("Enter valid hashtype")
+        elif which_hash_type.lower() == "md5":
+            md5_hash(data=hashinput)
+        elif which_hash_type.lower() == "sha1":
+            sha1_hash(data=hashinput)
+        elif which_hash_type.lower() == "sha256":
+            sha256(data=hashinput)
+        elif which_hash_type.lower() == "sha512":
+            sha512(data=hashinput)
+
+    if __name__ == "__main__":
+        choose()
 
 def script_lock():
     print("Activated lock feature")
@@ -77,9 +91,16 @@ def main_script(command: str) -> None:
 "cd" - Change directory
 "ls, ll, l" - list things in current directory
 "neofetch" - display simple local computer specs
+"base64, bs"- Encodes whatever text is in a file into base64, and outputs to terminal
 """)
         case ["hash" | "-hs"]:
             hashing()
+
+        case ["base64", "bs", path]:
+            if path == None:
+                print(f"No file or directory {path}")
+            else:
+                os.system(f"base64 {path}")
 
         case ["neofetch"]:
             os.system("neofetch")
@@ -163,11 +184,11 @@ lock - Uses face recognition to detect if someone is looking at your pc whilst y
                         break
 
 def main():
-    while 1:
+    for i in range(20):
         command = input(f"beta-V-{version}§ ")
         main_script(command) 
 
 if __name__ == "__main__":
+    print(f"Hello {platform.node()} to the helloUser AI : -h for help")
     main()
-    print(f"Hello {platform.node()} to the helloUser AI")
 
