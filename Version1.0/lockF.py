@@ -85,8 +85,11 @@ def script():
             # convert it to numpy array and BGR 
             # so we can write it to the disk
             image = cv2.cvtColor(np.array(image),cv2.COLOR_RGB2BGR)
-            os.mkdir(f"/home/{platform.node()}/Pictures/lockF")
-            cv2.imwrite(f"/home/{platform.node()}/Pictures/lockF/screenS"+ str(random.randint(1,99)) + ".png", image)
+            try:
+                os.mkdir(f"/home/{platform.node()}/Pictures/lockF")
+            except:
+                if FileExistsError:
+                    cv2.imwrite(f"/home/{platform.node()}/Pictures/lockF/screenS"+ str(random.randint(1,99)) + ".png", image)
                 
 
         # -------------- Show the image ----------------
