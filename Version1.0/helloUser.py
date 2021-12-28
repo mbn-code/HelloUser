@@ -1,10 +1,14 @@
-import pathlib
 import platform
 import os
 #import random
 import hashlib
 import psutil
-from pathlib import Path
+#import ctypes
+
+# Getting the screen resolution for the monitor
+#user32 = ctypes.windll.user32
+#sc1 = user32.GetSystemMetrics(0)
+#sc2 = user32.GetSystemMetrics(1)
 
 version = "BETA-V1.1"
 def information():
@@ -68,7 +72,8 @@ def main_script(command: str) -> None:
 "help, -h, --H" - displays this menu of commands
 "date, datetime, -D" - show the current date and time
 "hash, -hs" - command for quickly being able to hash a string with just a command
-"inf, information, -if"
+"inf, information, -if" - get hardware and network information 
+"activate, ac" -> lock, camera, blackout - The activate function has paraments which can be activated with the activate command. 
 """)
         case ["hash" | "-hs"]:
             hashing()
@@ -79,10 +84,11 @@ def main_script(command: str) -> None:
         case ["inf" | "information" | "-if"]:
             information()
 
-        case ["ls" | "ll"| "l"]:
+        case ["ls" | "ll" | "l"]:
             os.system("ls")
-            
-        case ["activate", *rest]:
+        
+
+        case ["activate" | "ac", *rest]:
             if "lock" in rest:
                 script_lock()
             elif "camera" in rest:
@@ -116,6 +122,8 @@ def main_script(command: str) -> None:
                 elif os.path.isfile(path):
                     os.system("cheese")
 
+            elif "blackout" or "bl":
+                print("Currently not able to use tkinter in python3.10")
 
             elif "-l" in rest:
                 print("""
