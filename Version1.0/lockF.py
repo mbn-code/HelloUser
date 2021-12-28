@@ -4,6 +4,7 @@ from numpy.core.fromnumeric import resize
 import pyautogui
 import random
 import platform
+
 def script():
 
     # here are all the haar cascades
@@ -12,7 +13,6 @@ def script():
     # I --- Font and side haar cascades .xml files
     faceCascade = cv2.CascadeClassifier("face_default.xml")
     faceCascadeProfile = cv2.CascadeClassifier("faceProfile_extended.xml")
-
     frontalFaceCloser = cv2.CascadeClassifier("frontalFaceCloser.xml")
 
     # I -- Video capture device to use 

@@ -1,11 +1,9 @@
 import platform
 import os
-import random
+#import random
 import hashlib
 import psutil
 from pathlib import Path
-
-
 
 version = "BETA-V1.1"
 def information():
