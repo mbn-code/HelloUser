@@ -74,6 +74,9 @@ def main_script(command: str) -> None:
 "hash, -hs" - command for quickly being able to hash a string with just a command
 "inf, information, -if" - get hardware and network information 
 "activate, ac" -> lock, camera, blackout - The activate function has paraments which can be activated with the activate command. 
+"cd" - Change directory
+"ls, ll, l" - list things in current directory
+"neofetch" - display simple local computer specs
 """)
         case ["hash" | "-hs"]:
             hashing()
@@ -87,6 +90,14 @@ def main_script(command: str) -> None:
         case ["ls" | "ll" | "l"]:
             os.system("ls")
         
+        case ["cd", path]:
+            if path == None:
+                print(f"No directory {path}")
+            else: 
+                os.chdir(str(path))
+
+        case ["exit", "quit", "stop"]:
+            os.system("exit")
 
         case ["activate" | "ac", *rest]:
             if "lock" in rest:
