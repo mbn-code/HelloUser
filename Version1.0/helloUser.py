@@ -164,7 +164,7 @@ lock - Uses face recognition to detect if someone is looking at your pc whilst y
 
 def main():
     while 1:
-        command = input(f"beta-V-{version}! ")
+        command = input(f"beta-V-{version}§ ")
         main_script(command) 
 
 if __name__ == "__main__":
