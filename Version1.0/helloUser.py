@@ -2,6 +2,7 @@ import platform
 import os
 #import random
 import hashlib
+from types import TracebackType
 import psutil
 #import ctypes
 
@@ -71,8 +72,11 @@ def hashing():
 
 def script_lock():
     print("Activated lock feature")
-    os.system("python3 lockF.py")
-
+    try:
+        os.system(f"python3 /home/{platform.node()}/Documents/helloUser/HelloUser/Version1.0/lockF.py")
+    except:
+        if os.error:
+            print("You can only activate lock feature when ")
 
 def main_script(command: str) -> None:
     match command.split():
@@ -117,8 +121,8 @@ def main_script(command: str) -> None:
             else: 
                 os.chdir(str(path))
 
-        case ["exit", "quit", "stop"]:
-            os.system("exit")
+        case ["exit" | "quit" | "stop"]:
+            quit()
 
         case ["activate" | "ac", *rest]:
             if "lock" in rest:
@@ -129,38 +133,34 @@ def main_script(command: str) -> None:
                 # Then if the file exists read the file and check if the file line is a 1 or 0
                 # If 1, start cheese via terminal, if 0 try automatically installing cheese.
                 
+                import cv2
 
-                path = "~bin/cheese"
-                if os.path.isfile(path) == False:
-                    with open("check_cheese.txt", "w") as write_1:
-                        write_1.write("1")
+                cap = cv2.VideoCapture(0)
 
-                    print("Checking if cheese is installed to the system")
+                if not cap.isOpened():
+                    raise IOError("Cannot open webcam")
 
-                    packman_ask = input("Are you running dnf, apt or pacman?: ")
-                    if packman_ask.lower() == "apt":
-                        os.system("sudo apt install cheese")
+                while True:
+                    ret, frame = cap.read()
+                    frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+                    cv2.imshow('Input', frame)
 
-                    if packman_ask.lower() == "pacman":
-                        os.system("sudo pacman -S cheese")
+                    c = cv2.waitKey(1)
+                    if c == 27:
+                        break
 
-                    if packman_ask.lower() == "dnf":
-                        ask_fandora_version = input("Are you running Fadora '22' or later, or '21' and older?")
-                        if ask_fandora_version.lower() == "22":
-                            os.system("sudo dnf install cheese")
+                cap.release()
+                cv2.destroyAllWindows()        
 
-                        elif ask_fandora_version.lower() == "21":
-                            os.system("sudo yum install cheese")
-                elif os.path.isfile(path):
-                    os.system("cheese")
 
-            elif "blackout" or "bl":
-                print("Currently not able to use tkinter in python3.10")
+            #elif "blackout" or "bl" in rest:
+            #    print("Currently not able to use tkinter in python3.10")
 
             elif "-l" in rest:
                 print("""
 -l
-lock - Uses face recognition to detect if someone is looking at your pc whilst your gone, and snaps a screenshot.
+lock - Uses face recognition to detect if someone is looking at your pc whilst your gone, and snaps a screenshot
+camera - Opens the camera
 """)
             else:
                 print("Do 'activate -l' for things to activate")
