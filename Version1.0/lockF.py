@@ -104,8 +104,6 @@ while True:
     
     resized = cv2.resize(thresh1, dim, interpolation = cv2.INTER_AREA)
 
-    cv2.imshow('BGR2GRAY', resized)
-
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

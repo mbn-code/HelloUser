@@ -5,7 +5,7 @@ import hashlib
 from types import TracebackType
 import psutil
 #import ctypes
-
+import time
 # Getting the screen resolution for the monitor
 #user32 = ctypes.windll.user32
 #sc1 = user32.GetSystemMetrics(0)
@@ -25,6 +25,27 @@ Ram: {str(round(psutil.virtual_memory().total / (1024 ** 3)))+ " GB"}
 """)
 
 
+def FibNums():
+    global amount
+    amount = input("Fibonacci numbers to print: ")
+    
+    print(f"Printing the first {amount} fibonacci numbers")
+    def printFibonacciNumbers(n: int) -> None:
+        # Check for n == 1 and + 1 if true
+        n==1;n+=1                      
+        f1 = 0
+        f2 = 1
+        if (n < 1):
+            return
+        print(f1)
+        for x in range(1, n):
+            print(f2)
+            next = f1 + f2
+            f1 = f2
+            f2 = next
+            print("-"*50 + f" num: {x}")
+    printFibonacciNumbers(int(amount))
+
 def hashing():
     print("hashing types:")
     print("md5\nsha1\nsha256\nsha512")
@@ -38,7 +59,6 @@ def hashing():
         hash_object.update(str(data).encode())
         print("hash ", hash_object.hexdigest())
 
-
     def sha1_hash(data):
         hash_object = hashlib.sha1()
         hash_object.update(str(data).encode())
@@ -48,7 +68,6 @@ def hashing():
         hash_object = hashlib.sha256()
         hash_object.update(str(data).encode())
         print("hash ", hash_object.hexdigest())
-
 
     def sha512(data):
         hash_object = hashlib.sha512()
@@ -72,11 +91,7 @@ def hashing():
 
 def script_lock():
     print("Activated lock feature")
-    try:
-        os.system(f"python3 /home/{platform.node()}/Documents/helloUser/HelloUser/Version1.0/lockF.py")
-    except:
-        if os.error:
-            print("You can only activate lock feature when ")
+    os.system(f"python3 /home/{platform.node()}/Documents/helloUser/HelloUser/Version1.0/lockF.py")
 
 def main_script(command: str) -> None:
     match command.split():
@@ -96,6 +111,7 @@ def main_script(command: str) -> None:
 "ls, ll, l" - list things in current directory
 "neofetch" - display simple local computer specs
 "base64, bs"- Encodes whatever text is in a file into base64, and outputs to terminal
+"fib, fibonacci" - Print amount of fibonacci numbers from a given value 
 """)
         case ["hash" | "-hs"]:
             hashing()
@@ -106,6 +122,9 @@ def main_script(command: str) -> None:
             else:
                 os.system(f"base64 {path}")
 
+        case ["fib" | "fibonacci"]:
+            FibNums()
+
         case ["neofetch"]:
             os.system("neofetch")
 
@@ -114,6 +133,10 @@ def main_script(command: str) -> None:
 
         case ["ls" | "ll" | "l"]:
             os.system("ls")
+        
+        case ["time"]:
+            current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
+            print(f"Current date and time {current_time}")
         
         case ["cd", path]:
             if path == None:
@@ -145,8 +168,7 @@ def main_script(command: str) -> None:
                         break
 
                 cap.release()
-                cv2.destroyAllWindows()        
-
+                cv2.destroyAllWindows()
 
             #elif "blackout" or "bl" in rest:
             #    print("Currently not able to use tkinter in python3.10")
