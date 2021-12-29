@@ -128,11 +128,6 @@ def main_script(command: str) -> None:
             if "lock" in rest:
                 script_lock()
             elif "camera" in rest:
-                # try to read the file if it's existing
-                # If it's not, write a 0 to the file, to let the program know that cheese is not installed
-                # Then if the file exists read the file and check if the file line is a 1 or 0
-                # If 1, start cheese via terminal, if 0 try automatically installing cheese.
-                
                 import cv2
 
                 cap = cv2.VideoCapture(0)
