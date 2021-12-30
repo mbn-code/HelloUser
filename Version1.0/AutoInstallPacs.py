@@ -6,21 +6,21 @@ def script():
     
     if distro_var.lower() == "apt":
         # install the apt packages 
-        os.system("sudo apt install base58 cutter file dig whois")
+        os.system("sudo apt install base58 cutter file dig whois metasploit-framework")
         # moduels that need to be installed
         os.system("pip3.10 install hashlib psutil")
 
     if distro_var.lower() == "pacman":
-        os.system("sudo pacman -S base58 cutter file dig whois")
+        os.system("sudo pacman -S base58 cutter file dig whois metasploit-framework")
 
         os.system("pip3.10 install hashlib psutil")
 
     if distro_var.lower() == "dnf":
-        os.system("sudo dnf install base58 cutter file dig whois")
+        os.system("sudo dnf install base58 cutter file dig whois metasploit-framework")
         os.system("pip3.10 install hashlib psutil")
 
     if distro_var.lower() == "yum":
-        os.system("sudo yum install base58 cutter file dig whois")
+        os.system("sudo yum install base58 cutter file dig whois metasploit-framework")
         os.system("pip3.10 install hashlib psutil")
 
 
