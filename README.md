@@ -14,7 +14,7 @@ These are some common CLI security tools which are used on a daily basis.
 
 Example:
 ```
-base64 file_name.txt
+platform.node() ▒ helloUser-V-BETA-V1.1§ base64 file_name.txt
 ```
 
 
