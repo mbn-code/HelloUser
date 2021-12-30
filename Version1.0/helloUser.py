@@ -115,6 +115,8 @@ def main_script(command: str) -> None:
 "dig, -dg" - Use the network tool dig in the hello Terminal
 "whois, -ws" - Use the whois command to get information about a domain or ip
 "File" - Determine file type
+"msfconsole" - Opens the popular metasploit-framework console
+"base58" - Encodes a file path in base58
 """)
         
         case ["cutter", file_path]:
