@@ -224,11 +224,13 @@ camera - Opens the camera
 
 def main():
     for i in range(20):
-        command = input(f"beta-V-{version}§ ")
+        command = input(f"{platform.node()} {CRED} helloUser-V-{version}§ ")
         main_script(command) 
-
+        
 if __name__ == "__main__":
-    welcome_string = f"Hello {platform.node()} to the helloUser AI : -h for help\n"
+    global CRED
+    CRED = "\030"
+    welcome_string = f"Hello {platform.node()} to the helloUser AI : -h for help\n" 
     for char in welcome_string:
         sleep(0.020)
         sys.stdout.write(char)
