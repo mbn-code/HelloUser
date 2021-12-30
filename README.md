@@ -13,7 +13,7 @@ Security / CLI -> e.g "hash", "base64", "dig", "whois":
 These are some common CLI security tools which are used on a daily basis.
 
 Example:
-```
+```bash
 platform.node() ▒ helloUser-V-BETA-V1.1§ base64 file_name.txt
 ```
 
