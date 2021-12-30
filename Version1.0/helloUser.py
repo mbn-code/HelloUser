@@ -258,7 +258,12 @@ blackout - Open a window that covers the whole screen (Keybin: Ctrl + c + move m
 lockdown - Closes all windows ()
 """)
             else:
-                print("Do 'activate -l' for things to activate")
+                do_var = "Do 'activate -l' to see the list of things to activate\n"
+                for char in do_var:
+                    sleep(0.020)
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+
 
         case ["exit" | "quit" | "stop"]:
             exit_ask = input("Are you sure you want to quit?: ")
