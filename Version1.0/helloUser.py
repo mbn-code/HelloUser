@@ -207,41 +207,45 @@ def main_script(command: str) -> None:
                 cap.release()
                 cv2.destroyAllWindows()
 
-            if "restart" in rest:
-                if platform == "linux" or "linux2" or "darwin":
-                    reminder_var = f"{platform.node()}, remember to save everything before restarting\n"
-                    for char in reminder_var:
-                        sleep(0.030 )
-                        sys.stdout.write(char)
-                        sys.stdout.flush()
-
-                    ask_restart = input("Are you sure you want to restart?: ")
-                    if ask_restart.lower() == "n" or "no":
-                        quit()
-                    elif ask_restart.lower() == "y" or "yes":
-                        os.system("shutdown -r now")
-                    
-
-
-                    os.system("shutdown -r now")
-                if platform == "win32":
-                    ask_restart = input("Are you sure you want to restart?: ")
-                    if ask_restart.lower() == "y" or "yes":
-                        os.system("shutdown /r /t 1")
-                    elif ask_restart.lower() == "n" or "no":
-                        pass
+            #if "restart" in rest:
+                #if platform == "linux" or "linux2" or "darwin":
+                #    reminder_var = f"{platform.node()}, remember to save everything before restarting\n"
+                #    for char in reminder_var:
+                #        sleep(0.030 )
+                #        sys.stdout.write(char)
+                #        sys.stdout.flush()
+                #
+                #    ask_restart = input("Are you sure you want to restart?: ")
+                #    if ask_restart.lower() == "n" or "no":
+                #        quit()
+                #    elif ask_restart.lower() == "y" or "yes":
+                #        os.system("shutdown -r now")
+                #    
+                #
+                #
+                #    os.system("shutdown -r now")
+                #if platform == "win32":
+                #    ask_restart = input("Are you sure you want to restart?: ")
+                #    if ask_restart.lower() == "y" or "yes":
+                #        os.system("shutdown /r /t 1")
+                #    elif ask_restart.lower() == "n" or "no":
+                #        pass
 
 
             if "blackout" in rest:
+                print("Blackout mode enabled")
                 os.system("python3 blackout.py")
             
             if "bl" in rest:
+                print("Blackout mode enabled")
                 os.system("python3 blackout.py")
 
             if "lockdown" in rest:
+                print("Activating lockdown mode")
                 os.system("python3 lockdown.py")
 
             if "ld" in rest:
+                print("Activating lockdown mode")
                 os.system("python3 lockdown.py")
 
 
