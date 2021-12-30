@@ -31,3 +31,7 @@ platform.node() ▒ helloUser-V-BETA-V1.1§ activate blackout
 
 Math commands -> "Fib/Fibonacci":
 The fibonacci commad returns a given amout of numbers of fibonacci.
+
+
+Preview
+![Screenshot](preview.png)
