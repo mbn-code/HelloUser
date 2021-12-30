@@ -116,6 +116,8 @@ def main_script(command: str) -> None:
 "neofetch" - display simple local computer specs
 "base64, bs"- Encodes whatever text is in a file into base64, and outputs to terminal
 "fib, fibonacci" - Print amount of fibonacci numbers from a given value 
+"dig, -dg" - Use the network tool dig in the hello Terminal
+"whois, -ws" - Use the whois command to get information about a domain or ip
 """)
         case ["hash" | "-hs"]:
             hashing()
@@ -232,4 +234,3 @@ if __name__ == "__main__":
         sys.stdout.write(char)
         sys.stdout.flush()
     main()
-
