@@ -117,9 +117,19 @@ def main_script(command: str) -> None:
 "File" - Determine file type
 """)
         
+        case ["cutter", file_path]:
+            print(f"Opening {file_path} in {command}")
+            os.system(f"sudo cutter {file_path}")
+
 
         case ["hash" | "-hs"]:
             hashing()
+
+        case ["base58", path]:
+            if path == None:
+                print(f"No file {path}")
+            else:
+                os.system(f"base58 {path}")
 
         case ["base64", "bs", path]:
             if path == None:
