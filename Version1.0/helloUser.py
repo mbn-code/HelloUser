@@ -24,7 +24,7 @@ Processor: {platform.processor()}
 Ram: {str(round(psutil.virtual_memory().total / (1024 ** 3)))+ " GB"}
 """)
 
-
+# This is a part of the math commands listed in the README.md file
 def FibNums():
     global amount
     amount = input("Fibonacci numbers to print: ")
@@ -46,6 +46,7 @@ def FibNums():
             print("-"*50 + f" num: {x}")
     printFibonacciNumbers(int(amount))
 
+# This is a part of the security commands as listed in the README.md
 def hashing():
     print("hashing types:")
     print("md5\nsha1\nsha256\nsha512")
@@ -116,6 +117,7 @@ def main_script(command: str) -> None:
 "File" - Determine file type
 """)
         
+
         case ["hash" | "-hs"]:
             hashing()
 
@@ -209,11 +211,17 @@ def main_script(command: str) -> None:
                     elif ask_restart.lower() == "n" or "no":
                         pass
 
+
             if "blackout" in rest:
                 os.system("python3 blackout.py")
             
+            if "bl" in rest:
+                os.system("python3 blackout.py")
 
             if "lockdown" in rest:
+                os.system("python3 lockdown.py")
+
+            if "ld" in rest:
                 os.system("python3 lockdown.py")
 
 
