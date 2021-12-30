@@ -3,9 +3,13 @@ import os
 #import random
 import hashlib
 from types import TracebackType
+from cv2 import error
 import psutil
 #import ctypes
 import time
+import sys
+from time import sleep
+
 # Getting the screen resolution for the monitor
 #user32 = ctypes.windll.user32
 #sc1 = user32.GetSystemMetrics(0)
@@ -144,8 +148,38 @@ def main_script(command: str) -> None:
             else: 
                 os.chdir(str(path))
 
+        # Becaue this is a system command don't need to add alot of if "rest" 
+        # Because it will just add whatever you put at the end to the input
+        case ["dig" | "-dg", domain_ip, *rest]:
+            if "-v" in rest:
+                print("Version tag enabled")
+                os.system(f"dig {domain_ip} -v")            
+            else: 
+                os.system(f"dig {domain_ip}")
+        
+        case ["-ws", domain_ip]:
+            os.system(f"whois {domain_ip}")
+
+
+
         case ["exit" | "quit" | "stop"]:
-            quit()
+            exit_ask = input("Are you sure you want to quit?: ")
+            if exit_ask.lower() == "y" or "yes":
+                word_quit = "Quitting"
+                for char in word_quit:
+                    sleep(0.030)
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                word_dot = ".."
+                for char2 in word_dot:
+                    sleep(0.2)
+                    sys.stdout.write(char2)
+                    sys.stdout.flush()
+                quit()
+            elif exit_ask.lower() == "n" or "no":
+                print(f"Returning to CLI-{version}...")
+                pass
+
 
         case ["activate" | "ac", *rest]:
             if "lock" in rest:
@@ -184,21 +218,7 @@ camera - Opens the camera
 
         case _:
             os.system(command)
-            command_list = ["version","help","hash","neofetch","information"]
-            for command_ in command_list:
-                if command_ != command: 
-                    if platform == "linux" or platform == "linux2":
-                        print("Linux operating system detected:")
-                        print("Try installing the command via 'apt', 'pacman' or 'dnf' depending on your distrobution")
-                        break
-                    elif platform == "darwin":
-                        print("OS X detected:")
-                        print("Try installing the command with brew")
-                        break
-                    elif platform == "win32":
-                        print("Windows / linux detected:")
-                        print("Try installing the command via 'apt' or 'pacman' depending on package manager")
-                        break
+
 
 def main():
     for i in range(20):
@@ -206,6 +226,10 @@ def main():
         main_script(command) 
 
 if __name__ == "__main__":
-    print(f"Hello {platform.node()} to the helloUser AI : -h for help")
+    welcome_string = f"Hello {platform.node()} to the helloUser AI : -h for help\n"
+    for char in welcome_string:
+        sleep(0.020)
+        sys.stdout.write(char)
+        sys.stdout.flush()
     main()
 
