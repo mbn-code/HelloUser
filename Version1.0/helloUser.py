@@ -2,13 +2,13 @@ import platform
 import os
 #import random
 import hashlib
-from types import TracebackType
-from cv2 import error
 import psutil
 #import ctypes
 import time
 import sys
 from time import sleep
+# Can't use pyautogui because python3.10 doesn't support tk yet I think
+# import pyautogui
 
 # Getting the screen resolution for the monitor
 #user32 = ctypes.windll.user32
@@ -103,7 +103,6 @@ def main_script(command: str) -> None:
         case ["version" | "-V"]:
             print(f"{version}")
 
-
         case ["help" | "-h" | "--H"]:
             print("""
 "help, -h, --H" - displays this menu of commands
@@ -118,6 +117,7 @@ def main_script(command: str) -> None:
 "fib, fibonacci" - Print amount of fibonacci numbers from a given value 
 "dig, -dg" - Use the network tool dig in the hello Terminal
 "whois, -ws" - Use the whois command to get information about a domain or ip
+"File" - Determine file type
 """)
         case ["hash" | "-hs"]:
             hashing()
@@ -144,6 +144,9 @@ def main_script(command: str) -> None:
             current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
             print(f"Current date and time {current_time}")
         
+        case ["file" | "-fl", file_path]:
+            os.system(f"file {file_path}")
+
         case ["cd", path]:
             if path == None:
                 print(f"No directory {path}")
@@ -161,27 +164,6 @@ def main_script(command: str) -> None:
         
         case ["-ws", domain_ip]:
             os.system(f"whois {domain_ip}")
-
-
-
-        case ["exit" | "quit" | "stop"]:
-            exit_ask = input("Are you sure you want to quit?: ")
-            if exit_ask.lower() == "y" or "yes":
-                word_quit = "Quitting"
-                for char in word_quit:
-                    sleep(0.030)
-                    sys.stdout.write(char)
-                    sys.stdout.flush()
-                word_dot = ".."
-                for char2 in word_dot:
-                    sleep(0.2)
-                    sys.stdout.write(char2)
-                    sys.stdout.flush()
-                quit()
-            elif exit_ask.lower() == "n" or "no":
-                print(f"Returning to CLI-{version}...")
-                pass
-
 
         case ["activate" | "ac", *rest]:
             if "lock" in rest:
@@ -209,6 +191,13 @@ def main_script(command: str) -> None:
             #elif "blackout" or "bl" in rest:
             #    print("Currently not able to use tkinter in python3.10")
 
+
+            # -- Currently waiting for python3.10 to support python3-tk 
+            # elif "mm" or "Minimize" in rest:
+
+
+
+
             elif "-l" in rest:
                 print("""
 -l
@@ -218,6 +207,23 @@ camera - Opens the camera
             else:
                 print("Do 'activate -l' for things to activate")
 
+        case ["exit" | "quit" | "stop"]:
+            exit_ask = input("Are you sure you want to quit?: ")
+            if exit_ask.lower() == "y" or "yes":
+                word_quit = "Quitting"
+                for char in word_quit:
+                    sleep(0.030)
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                word_dot = ".."
+                for char2 in word_dot:
+                    sleep(0.2)
+                    sys.stdout.write(char2)
+                    sys.stdout.flush()
+                quit()
+            elif exit_ask.lower() == "n" or "no":
+                print(f"Returning to CLI-{version}...")
+                pass
         case _:
             os.system(command)
 
