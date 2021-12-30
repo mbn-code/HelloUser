@@ -223,7 +223,7 @@ def main_script(command: str) -> None:
 -l
 lock - Uses face recognition to detect if someone is looking at your pc whilst your gone, and snaps a screenshot
 camera - Opens the camera
-blackout - Open a window that covers the whole screen
+blackout - Open a window that covers the whole screen (Keybin: Ctrl + c -> to close blackout feature)
 lockdown - Closes all windows 
 """)
             else:
