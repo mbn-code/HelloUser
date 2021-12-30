@@ -19,8 +19,10 @@ def script():
         os.system("sudo dnf install base58 cutter file dig whois")
         os.system("pip3.10 install hashlib psutil")
 
-    if distro_var.lower() == "":
-        pass
+    if distro_var.lower() == "yum":
+        os.system("sudo yum install base58 cutter file dig whois")
+        os.system("pip3.10 install hashlib psutil")
+
 
 
 if __name__ == "__main__":
