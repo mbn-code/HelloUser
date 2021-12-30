@@ -213,7 +213,6 @@ def main_script(command: str) -> None:
                 os.system("python3 blackout.py")
             
 
-
             if "lockdown" in rest:
                 os.system("python3 lockdown.py")
 
@@ -223,7 +222,7 @@ def main_script(command: str) -> None:
 -l
 lock - Uses face recognition to detect if someone is looking at your pc whilst your gone, and snaps a screenshot
 camera - Opens the camera
-blackout - Open a window that covers the whole screen (Keybin: Ctrl + c to close blackout feature)
+blackout - Open a window that covers the whole screen (Keybin: Ctrl + c + move mouse after to close blackout feature) 
 lockdown - Closes all windows ()
 """)
             else:
