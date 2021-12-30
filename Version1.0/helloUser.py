@@ -121,6 +121,14 @@ def main_script(command: str) -> None:
             print(f"Opening {file_path} in {command}")
             os.system(f"sudo cutter {file_path}")
 
+        case ["msfconsole"]:
+            char_var = "Please wait for msfconsole to start.. \n"
+            for char in char_var:
+                sleep(0.015)
+                sys.stdout.write(char)
+                sys.stdout.flush()
+            os.system("msfconsole")
+
 
         case ["hash" | "-hs"]:
             hashing()
