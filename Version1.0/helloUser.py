@@ -10,10 +10,6 @@ from time import sleep
 # Can't use pyautogui because python3.10 doesn't support tk yet I think
 # import pyautogui
 
-# Getting the screen resolution for the monitor
-#user32 = ctypes.windll.user32
-#sc1 = user32.GetSystemMetrics(0)
-#sc2 = user32.GetSystemMetrics(1)
 
 version = "BETA-V1.1"
 def information():
@@ -168,7 +164,7 @@ def main_script(command: str) -> None:
         case ["activate" | "ac", *rest]:
             if "lock" in rest:
                 script_lock()
-            elif "camera" in rest:
+            if "camera" in rest:
                 import cv2
 
                 cap = cv2.VideoCapture(0)
@@ -188,27 +184,38 @@ def main_script(command: str) -> None:
                 cap.release()
                 cv2.destroyAllWindows()
 
-            elif "LockDown" or "LD" in rest:
-                if platform == "win32":
-                    pass
-                if platform == "linux" or "linux2":
-                    pass
+            if "restart" in rest:
+                if platform == "linux" or "linux2" or "darwin":
+                    reminder_var = f"{platform.node()}, remember to save everything before restarting\n"
+                    for char in reminder_var:
+                        sleep(0.030 )
+                        sys.stdout.write(char)
+                        sys.stdout.flush()
 
-            elif "restart":
-                if platform == "linux" or "linux2":
+                    ask_restart = input("Are you sure you want to restart?: ")
+                    if ask_restart.lower() == "n" or "no":
+                        quit()
+                    elif ask_restart.lower() == "y" or "yes":
+                        os.system("shutdown -r now")
+                    
+
+
                     os.system("shutdown -r now")
+                if platform == "win32":
+                    ask_restart = input("Are you sure you want to restart?: ")
+                    if ask_restart.lower() == "y" or "yes":
+                        os.system("shutdown /r /t 1")
+                    elif ask_restart.lower() == "n" or "no":
+                        pass
+
+            if "blackout" in rest:
+                for loop in range(1):
+                    os.system("python3 blackout.py")
+            
 
 
-
-
-            #elif "blackout" or "bl" in rest:
-            #    print("Currently not able to use tkinter in python3.10")
-
-
-            # -- Currently waiting for python3.10 to support python3-tk 
-            # elif "mm" or "Minimize" in rest:
-
-
+            if "lockdown" in rest:
+                os.system("python3 lockdown.py")
 
 
             elif "-l" in rest:
@@ -216,6 +223,8 @@ def main_script(command: str) -> None:
 -l
 lock - Uses face recognition to detect if someone is looking at your pc whilst your gone, and snaps a screenshot
 camera - Opens the camera
+blackout - Open a window that covers the whole screen
+lockdown - Closes all windows 
 """)
             else:
                 print("Do 'activate -l' for things to activate")
@@ -242,7 +251,7 @@ camera - Opens the camera
 
 
 def main():
-    for i in range(20):
+    while 1:
         command = input(f"{platform.node()} {CRED} helloUser-V-{version}§ ")
         main_script(command) 
         
