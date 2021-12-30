@@ -188,6 +188,19 @@ def main_script(command: str) -> None:
                 cap.release()
                 cv2.destroyAllWindows()
 
+            elif "LockDown" or "LD" in rest:
+                if platform == "win32":
+                    pass
+                if platform == "linux" or "linux2":
+                    pass
+
+            elif "restart":
+                if platform == "linux" or "linux2":
+                    os.system("shutdown -r now")
+
+
+
+
             #elif "blackout" or "bl" in rest:
             #    print("Currently not able to use tkinter in python3.10")
 
