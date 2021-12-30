@@ -115,21 +115,15 @@ def main_script(command: str) -> None:
 "whois, -ws" - Use the whois command to get information about a domain or ip
 "File" - Determine file type
 """)
-        case ["security" | "sec", path, file_path, domain_ip, *rest]:
-            if "hash" or "-hs" in rest:
-                hashing()
+        
+        case ["hash" | "-hs"]:
+            hashing()
 
-            if "base64" or "bs" in rest:
-                if path == None:
-                    print(f"No file or directory {path}")
-                else:
-                    os.system(f"base64 {path}")
-
-            if "dig" or "-dg" in rest: 
-                os.system(f"dig {domain_ip}")
-
-            if "-ws" in rest:
-                os.system(f"whois {domain_ip}")
+        case ["base64", "bs", path]:
+            if path == None:
+                print(f"No file or directory {path}")
+            else:
+                os.system(f"base64 {path}")
 
         case ["fib" | "fibonacci"]:
             FibNums()
@@ -156,6 +150,17 @@ def main_script(command: str) -> None:
             else: 
                 os.chdir(str(path))
 
+        # Becaue this is a system command don't need to add alot of if "rest" 
+        # Because it will just add whatever you put at the end to the input
+        case ["dig" | "-dg", domain_ip, *rest]:
+            if "-v" in rest:
+                print("Version tag enabled")
+                os.system(f"dig {domain_ip} -v")            
+            else: 
+                os.system(f"dig {domain_ip}")
+        
+        case ["-ws", domain_ip]:
+            os.system(f"whois {domain_ip}")
 
         case ["activate" | "ac", *rest]:
             if "lock" in rest:
@@ -207,6 +212,7 @@ def main_script(command: str) -> None:
             if "blackout" in rest:
                 os.system("python3 blackout.py")
             
+
 
             if "lockdown" in rest:
                 os.system("python3 lockdown.py")
