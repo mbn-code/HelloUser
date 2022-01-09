@@ -132,6 +132,15 @@ def main_script(command: str) -> None:
             os.system("msfconsole")
 
 
+        case ["open"]:
+            if platform == "win32":
+                pass
+            if platform == "linux" or "linux2":
+                pass
+            if platform == "darwin":
+                pass
+
+
         case ["hash" | "-hs"]:
             hashing()
 
