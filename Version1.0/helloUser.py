@@ -117,6 +117,8 @@ def main_script(command: str) -> None:
 "File" - Determine file type
 "msfconsole" - starts the popular metasploit-framework console
 "base58" - Encodes a file path in base58
+"Open" - Not finished - Executes a program
+"ip, ipinfo" - Get detailed information on an ip address (only ip address)
 """)
         
         case ["cutter", file_path]:
