@@ -1,7 +1,7 @@
 # HelloUser
 Your security based AI which helps you do your daily tasks with light weight tools and easy commands to remember.
-This tool is uses speech recognition to detect commands given by the user.
-The tool can also be used by the cli, where you type in the commands by keyboard. 
+This tool is going to use speech recognition to detect your commands in the future.
+The tool can also be used with the CLI (Command line interface / Terminal Emulator), where you type in the commands. 
 
 Main / Daily-use commands -> e.g: "ls", "cd", "":
 These are the commands that are essential for using the CLI,
