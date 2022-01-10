@@ -115,12 +115,12 @@ def main_script(command: str) -> None:
 "dig, -dg" - Use the network tool dig in the hello Terminal
 "whois, -ws" - Use the whois command to get information about a domain or ip
 "File" - Determine file type
-"msfconsole" - Opens the popular metasploit-framework console
+"msfconsole" - starts the popular metasploit-framework console
 "base58" - Encodes a file path in base58
 """)
         
         case ["cutter", file_path]:
-            print(f"Opening {file_path} in {command}")
+            print(f"Starting {file_path} in {command}")
             os.system(f"sudo cutter {file_path}")
 
         case ["msfconsole"]:
@@ -131,6 +131,9 @@ def main_script(command: str) -> None:
                 sys.stdout.flush()
             os.system("msfconsole")
 
+        case ["ip" | "ipinfo", ip]:
+            os.system(f"curl ipinfo.io/{ip}")
+            print("\n")
 
         case ["open"]:
             if platform == "win32":
