@@ -29,9 +29,9 @@ def FibNums():
     global amount
     amount = input("Fibonacci numbers to print: ")
     
-    print(f"Printing the first {amount} fibonacci numbers")
+    print(f"Printing the first {amount} of fibonacci numbers")
     def printFibonacciNumbers(n: int) -> None:
-        # Check for n == 1 and + 1 if true
+        # +1 if n == 1
         n==1;n+=1                      
         f1 = 0
         f2 = 1
