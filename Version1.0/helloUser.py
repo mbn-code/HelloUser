@@ -11,7 +11,7 @@ from time import sleep
 # import pyautogui
 
 
-version = "BETA-V1.1"
+version = "BETA-V1.2"
 def information():
     print(f"""
 ToolKit-Version: {version}
