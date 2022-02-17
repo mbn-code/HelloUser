@@ -186,7 +186,7 @@ def main_script(command: str) -> None:
             else: 
                 os.chdir(str(path))
 
-        # Becaue this is a system command don't need to add alot of if "rest" 
+        # Because this is a system command don't need to add a lot of if "rest" 
         # Because it will just add whatever you put at the end to the input
         case ["dig" | "-dg", domain_ip, *rest]:
             if "-v" in rest:
@@ -271,6 +271,7 @@ lockdown - Closes all windows ()
             elif exit_ask.lower() == "n" or "no":
                 print(f"Returning to CLI-{version}...")
                 pass
+
         case _:
             os.system(command)
 
