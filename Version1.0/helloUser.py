@@ -1,9 +1,7 @@
 import platform
 import os
-#import random
 import hashlib
 import psutil
-#import ctypes
 import time
 import sys
 from time import sleep
@@ -119,6 +117,7 @@ def main_script(command: str) -> None:
 "base58" - Encodes a file path in base58
 "Open" - Not finished - Executes a program
 "ip, ipinfo" - Get detailed information on an ip address (only ip address)
+"d2ip" - Convert domain to ip, both for TLD, and Subdomains
 """)
         
         case ["cutter", file_path]:
@@ -185,6 +184,19 @@ def main_script(command: str) -> None:
                 print(f"No directory {path}")
             else: 
                 os.chdir(str(path))
+
+
+        # Using built in tool into parrot os, this allows for subdomain to ip and domain to ip 
+        case ["d2ip", domain, *rest]:
+            if "-d" in rest:
+                os.system(f"ping {domain} -c 1")
+            elif "-s" in rest:
+                os.system(f"dnsmap {domain} -d 200")
+
+            else:
+                d2ip = input("Enter domain to ping: ")
+                os.system(f"ping {d2ip} -c 1")
+
 
         # Because this is a system command don't need to add a lot of if "rest" 
         # Because it will just add whatever you put at the end to the input
