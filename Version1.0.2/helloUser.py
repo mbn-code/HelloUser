@@ -94,7 +94,6 @@ def script_lock():
 
 def main_script(command: str) -> None:
     match command.split():
-
         case ["version" | "-V"]:
             print(f"{version}")
 
@@ -192,11 +191,9 @@ def main_script(command: str) -> None:
                 os.system(f"ping {domain} -c 1")
             elif "-s" in rest:
                 os.system(f"dnsmap {domain} -d 200")
-
             else:
                 d2ip = input("Enter domain to ping: ")
                 os.system(f"ping {d2ip} -c 1")
-
 
         # Because this is a system command don't need to add a lot of if "rest" 
         # Because it will just add whatever you put at the end to the input
@@ -246,7 +243,6 @@ lockdown - Closes all windows ()
                     sys.stdout.write(char)
                     sys.stdout.flush()
 
-
         case ["exit" | "quit" | "stop"]:
             exit_ask = input("Are you sure you want to quit?: ")
             if exit_ask.lower() == "y" or "yes":
@@ -267,7 +263,6 @@ lockdown - Closes all windows ()
 
         case _:
             os.system(command)
-
 
 def main():
     while 1:
