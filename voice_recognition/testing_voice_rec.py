@@ -63,8 +63,6 @@ def voice_rec():
     else:
         print("Command not recognized")
         voice_rec()
-    
-
 
 if __name__ == "__main__":
     voice_rec()
